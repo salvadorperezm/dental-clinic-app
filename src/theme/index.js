@@ -8,4 +8,8 @@ export const theme = extendTheme({
     yinBlue: "#304d6d",
     airSuperiorityBlue: "#82a0bc",
   },
+  fonts: {
+    heading: `'Roboto', sans-serif`,
+    body: `'Poppins', sans-serif`,
+  },
 });

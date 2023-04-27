@@ -1,5 +1,12 @@
-import { Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
+
+import { HomeHeader } from "../../components";
 
 export const Home = () => {
-  return <Text>Home Page</Text>;
+  return (
+    <Box>
+      <HomeHeader />
+      <Text>Home Page</Text>
+    </Box>
+  );
 };
