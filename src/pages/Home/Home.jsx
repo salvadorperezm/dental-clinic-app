@@ -1,12 +1,12 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
-import { HomeHeader } from "../../components";
+import { HeroSection, HomeHeader } from "../../components";
 
 export const Home = () => {
   return (
     <Box>
       <HomeHeader />
-      <Text>Home Page</Text>
+      <HeroSection />
     </Box>
   );
 };
