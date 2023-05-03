@@ -20,9 +20,11 @@ export const HeaderDrawer = ({ isOpen, onClose }) => {
   const links = [
     {
       name: "inicio",
+      link: "home",
     },
     {
       name: "sobre nosotros",
+      link: "about-us",
     },
     {
       name: "servicios",
@@ -50,6 +52,7 @@ export const HeaderDrawer = ({ isOpen, onClose }) => {
                       textTransform={"capitalize"}
                       fontSize={"22px"}
                       _hover={{ textTransform: "none" }}
+                      href={`#${link.link}`}
                     >
                       {link.name}
                     </Link>
