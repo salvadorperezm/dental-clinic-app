@@ -21,9 +21,11 @@ export const HomeHeader = () => {
   const links = [
     {
       name: "inicio",
+      link: "home",
     },
     {
       name: "sobre nosotros",
+      link: "about-us",
     },
     {
       name: "servicios",
@@ -59,7 +61,7 @@ export const HomeHeader = () => {
             return (
               <ListItem key={link.name}>
                 <Link
-                  href="#"
+                  href={`#${link.link}`}
                   textTransform={"capitalize"}
                   paddingY={"8px"}
                   color={"white"}
