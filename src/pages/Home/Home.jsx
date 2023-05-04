@@ -1,6 +1,11 @@
 import { Box } from "@chakra-ui/react";
 
-import { AboutUs, HeroSection, HomeHeader } from "../../components";
+import {
+  AboutUs,
+  HeroSection,
+  HomeHeader,
+  ServicesSection,
+} from "../../components";
 
 export const Home = () => {
   return (
@@ -8,6 +13,7 @@ export const Home = () => {
       <HomeHeader />
       <HeroSection />
       <AboutUs />
+      <ServicesSection />
     </Box>
   );
 };
