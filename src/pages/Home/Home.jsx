@@ -4,6 +4,7 @@ import {
   AboutUs,
   HeroSection,
   HomeHeader,
+  PersonnelSection,
   ServicesSection,
 } from "../../components";
 
@@ -14,6 +15,7 @@ export const Home = () => {
       <HeroSection />
       <AboutUs />
       <ServicesSection />
+      <PersonnelSection />
     </Box>
   );
 };
