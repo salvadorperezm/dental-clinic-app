@@ -3,6 +3,7 @@ import { Box } from "@chakra-ui/react";
 import {
   AboutUs,
   HeroSection,
+  HomeFooter,
   HomeHeader,
   PersonnelSection,
   ServicesSection,
@@ -16,6 +17,7 @@ export const Home = () => {
       <AboutUs />
       <ServicesSection />
       <PersonnelSection />
+      <HomeFooter />
     </Box>
   );
 };
