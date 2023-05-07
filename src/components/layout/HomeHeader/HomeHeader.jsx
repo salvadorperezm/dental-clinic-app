@@ -29,9 +29,11 @@ export const HomeHeader = () => {
     },
     {
       name: "servicios",
+      link: "services",
     },
     {
       name: "personal",
+      link: "personnel",
     },
   ];
 
@@ -42,13 +44,18 @@ export const HomeHeader = () => {
       py={"8px"}
       bg={"argentinianBlue"}
       align={"center"}
+      position={"fixed"}
+      width={"100%"}
+      top={"0"}
+      backdropFilter={"blur(10px)"}
+      zIndex={"200"}
     >
       <Logo />
       <Spacer />
       <Box
         as={"nav"}
         alignItems={"center"}
-        display={{ base: "none", md: "flex" }}
+        display={{ base: "none", lg: "flex" }}
         gap={"20px"}
       >
         <UnorderedList
@@ -69,6 +76,7 @@ export const HomeHeader = () => {
                     textDecoration: "none",
                     borderBlockEnd: "1px solid white",
                   }}
+                  fontSize={"22px"}
                 >
                   {link.name}
                 </Link>
@@ -77,11 +85,11 @@ export const HomeHeader = () => {
           })}
         </UnorderedList>
         <RouterLink to={"/login"}>
-          <Button>Iniciar Sesión</Button>
+          <Button size={"lg"}>Iniciar Sesión</Button>
         </RouterLink>
       </Box>
       <IconButton
-        display={{ base: "block", md: "none" }}
+        display={{ base: "block", lg: "none" }}
         icon={<HamburgerIcon />}
         onClick={onOpen}
       />
