@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { Flex, Heading, Link } from "@chakra-ui/react";
 
 /* eslint-disable react/no-unknown-property */
-export const Logo = () => {
+export const Logo = ({ onClose }) => {
   return (
-    <Link href="#" _hover={{ textDecoration: "none" }}>
+    <Link href="#" _hover={{ textDecoration: "none" }} onClick={onClose}>
       <Flex alignItems={"center"}>
         <svg
           xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -206,7 +207,7 @@ export const Logo = () => {
         <Heading
           color={"white"}
           fontFamily={"poppins"}
-          size={{ base: "md", md: "lg" }}
+          size={{ base: "md", md: "xl" }}
         >
           DentaClean
         </Heading>

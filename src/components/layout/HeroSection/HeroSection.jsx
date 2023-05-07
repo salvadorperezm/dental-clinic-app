@@ -1,4 +1,5 @@
-import { Box, Button, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Image, Link, Text } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
 import HeroImage from "../../../assets/images/hero-image.png";
 
@@ -20,8 +21,8 @@ export const HeroSection = () => {
 
   return (
     <Box
-      id="#"
-      as="section"
+      id={"home"}
+      as={"section"}
       backgroundColor={"argentinianBlue"}
       paddingX={{ base: "16px", lg: "64px" }}
       minHeight={"calc(100vh - 76px)"}
@@ -29,6 +30,7 @@ export const HeroSection = () => {
       flexDirection={{ base: "column", md: "row" }}
       alignItems={{ base: "none", md: "center" }}
       justifyContent={{ base: "none", md: "space-between" }}
+      marginBlockStart={"76px"}
     >
       <Box>
         <Box>
@@ -56,12 +58,21 @@ export const HeroSection = () => {
             gap={"16px"}
             marginBlockEnd={{ base: "16px", md: "32px" }}
           >
-            <Button colorScheme={"facebook"} size={"lg"}>
-              Agenda tu cita
-            </Button>
-            <Button colorScheme={"facebook"} variant={"outline"} size={"lg"}>
-              Conoce a nuestro personal
-            </Button>
+            <RouterLink to={"/login"}>
+              <Button colorScheme={"facebook"} size={"lg"} width={"100%"}>
+                Agenda tu cita
+              </Button>
+            </RouterLink>
+            <Link href="#personnel">
+              <Button
+                colorScheme={"facebook"}
+                variant={"outline"}
+                size={"lg"}
+                width={"100%"}
+              >
+                Conoce a nuestro personal
+              </Button>
+            </Link>
           </Box>
         </Box>
         <Box

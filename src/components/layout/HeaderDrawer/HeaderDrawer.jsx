@@ -28,9 +28,11 @@ export const HeaderDrawer = ({ isOpen, onClose }) => {
     },
     {
       name: "servicios",
+      link: "services",
     },
     {
       name: "personal",
+      link: "personnel",
     },
   ];
 
@@ -40,7 +42,7 @@ export const HeaderDrawer = ({ isOpen, onClose }) => {
       <DrawerContent bgColor={"argentinianBlue"} color={"white"}>
         <DrawerCloseButton onClick={onClose} />
         <DrawerHeader>
-          <Logo />
+          <Logo onClose={onClose} />
         </DrawerHeader>
         <DrawerBody>
           <Box as={"nav"}>
@@ -53,6 +55,7 @@ export const HeaderDrawer = ({ isOpen, onClose }) => {
                       fontSize={"22px"}
                       _hover={{ textTransform: "none" }}
                       href={`#${link.link}`}
+                      onClick={onClose}
                     >
                       {link.name}
                     </Link>
