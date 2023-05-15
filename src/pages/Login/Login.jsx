@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 import { FormLayout } from "../../layout";
@@ -20,6 +20,8 @@ export const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const toast = useToast();
+
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -41,8 +43,9 @@ export const Login = () => {
           values
         );
         actions.resetForm();
-        console.log(response.data);
+        localStorage.setItem("accessToken", response.data.access_token);
         setIsLoading(false);
+        navigate("/dashboard");
       } catch (error) {
         toast({
           title: "Error",

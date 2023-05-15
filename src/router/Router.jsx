@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
-import { Home, Login, Register } from "../pages";
+import { ProtectedRoute } from "../components";
+import { Dashboard, Home, Login, Register } from "../pages";
 
 export const Router = () => {
   return (
@@ -8,6 +9,14 @@ export const Router = () => {
       <Route path="/" element={<Home />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 };
