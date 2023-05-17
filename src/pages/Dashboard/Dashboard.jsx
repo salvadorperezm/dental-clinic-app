@@ -2,6 +2,8 @@ import { Heading } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+import { UserDashboard } from "../../components";
+
 export const Dashboard = () => {
   const [userInfo, setUserInfo] = useState({});
 
@@ -28,9 +30,7 @@ export const Dashboard = () => {
   return (
     <>
       {userInfo.role === "User" ? (
-        <Heading>
-          {userInfo.firstName} {userInfo.lastName}. {userInfo.role}
-        </Heading>
+        <UserDashboard userInfo={userInfo} />
       ) : userInfo.role === "Personnel" ? (
         <Heading>
           {userInfo.firstName} {userInfo.lastName}. {userInfo.role}

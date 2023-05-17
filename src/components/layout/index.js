@@ -5,3 +5,4 @@ export * from "./HomeFooter";
 export * from "./HomeHeader";
 export * from "./PersonnelSection";
 export * from "./ServicesSection";
+export * from "./UserDashboard";
