@@ -3,6 +3,7 @@ export * from "./HeaderDrawer";
 export * from "./HeroSection";
 export * from "./HomeFooter";
 export * from "./HomeHeader";
+export * from "./NewAppointment";
 export * from "./PersonnelSection";
 export * from "./ServicesSection";
 export * from "./UserDashboard";
