@@ -95,6 +95,7 @@ export const UserDashboard = ({ userInfo }) => {
       <NewAppointment
         isNewAppointmentOpen={isNewAppointmentOpen}
         closeNewAppointment={closeNewAppointment}
+        userInfo={userInfo}
       />
     </>
   );
