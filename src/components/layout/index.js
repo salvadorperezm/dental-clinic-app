@@ -6,4 +6,5 @@ export * from "./HomeHeader";
 export * from "./NewAppointment";
 export * from "./PersonnelSection";
 export * from "./ServicesSection";
+export * from "./UserAppointments";
 export * from "./UserDashboard";
