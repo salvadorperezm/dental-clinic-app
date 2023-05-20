@@ -11,6 +11,7 @@ import Calendar from "../../../assets/images/calendar.svg";
 import List from "../../../assets/images/list.svg";
 import Settings from "../../../assets/images/settings.svg";
 import { NewAppointment } from "../NewAppointment";
+import { UserAppointments } from "../UserAppointments";
 import { UserDashboardLayout } from "../../../layout";
 
 export const UserDashboard = ({ userInfo }) => {
@@ -18,6 +19,12 @@ export const UserDashboard = ({ userInfo }) => {
     isOpen: isNewAppointmentOpen,
     onOpen: openNewAppointment,
     onClose: closeNewAppointment,
+  } = useDisclosure();
+
+  const {
+    isOpen: isUserAppointmentsOpen,
+    onOpen: openUserAppointments,
+    onClose: closeUserAppointments,
   } = useDisclosure();
 
   const actions = [
@@ -31,6 +38,7 @@ export const UserDashboard = ({ userInfo }) => {
       id: 2,
       title: "Registo de citas",
       image: List,
+      modal: openUserAppointments,
     },
     {
       id: 3,
@@ -95,6 +103,11 @@ export const UserDashboard = ({ userInfo }) => {
       <NewAppointment
         isNewAppointmentOpen={isNewAppointmentOpen}
         closeNewAppointment={closeNewAppointment}
+        userInfo={userInfo}
+      />
+      <UserAppointments
+        isUserAppointmentsOpen={isUserAppointmentsOpen}
+        closeUserAppointments={closeUserAppointments}
         userInfo={userInfo}
       />
     </>
