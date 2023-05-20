@@ -15,39 +15,14 @@ import {
   Td,
   Text,
 } from "@chakra-ui/react";
-import axios from "axios";
-import { useEffect, useState } from "react";
+
 import { AppointmentStatus } from "../../ui";
 
 export const UserAppointments = ({
-  userInfo,
   isUserAppointmentsOpen,
   closeUserAppointments,
+  appointments,
 }) => {
-  const [appointments, setAppointments] = useState();
-
-  useEffect(() => {
-    fetchAppointmentsByUser();
-  }, []);
-
-  const fetchAppointmentsByUser = async () => {
-    const backendBaseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
-    try {
-      const accessToken = localStorage.getItem("accessToken");
-      const response = await axios.get(
-        `${backendBaseUrl}/users/${userInfo.userId}/appointments`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      setAppointments(response.data);
-    } catch (error) {
-      console.warn(error);
-    }
-  };
-
   return (
     <Modal isOpen={isUserAppointmentsOpen} onClose={closeUserAppointments}>
       <ModalOverlay />

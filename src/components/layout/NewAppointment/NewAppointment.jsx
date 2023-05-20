@@ -23,6 +23,7 @@ export const NewAppointment = ({
   isNewAppointmentOpen,
   closeNewAppointment,
   userInfo,
+  fetchAppointmentsByUser,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -56,6 +57,8 @@ export const NewAppointment = ({
         });
         actions.resetForm();
         setIsLoading(false);
+        closeNewAppointment();
+        fetchAppointmentsByUser();
       } catch (error) {
         toast({
           title: "Error.",

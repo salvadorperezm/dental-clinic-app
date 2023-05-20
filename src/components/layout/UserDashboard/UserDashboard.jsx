@@ -6,6 +6,8 @@ import {
   SimpleGrid,
   useDisclosure,
 } from "@chakra-ui/react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 import Calendar from "../../../assets/images/calendar.svg";
 import List from "../../../assets/images/list.svg";
@@ -15,6 +17,8 @@ import { UserAppointments } from "../UserAppointments";
 import { UserDashboardLayout } from "../../../layout";
 
 export const UserDashboard = ({ userInfo }) => {
+  const [appointments, setAppointments] = useState([]);
+
   const {
     isOpen: isNewAppointmentOpen,
     onOpen: openNewAppointment,
@@ -46,6 +50,28 @@ export const UserDashboard = ({ userInfo }) => {
       image: Settings,
     },
   ];
+
+  const fetchAppointmentsByUser = async () => {
+    const backendBaseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const response = await axios.get(
+        `${backendBaseUrl}/users/${userInfo.userId}/appointments`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      setAppointments(response.data);
+    } catch (error) {
+      console.warn(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAppointmentsByUser();
+  }, []);
 
   return (
     <>
@@ -104,11 +130,13 @@ export const UserDashboard = ({ userInfo }) => {
         isNewAppointmentOpen={isNewAppointmentOpen}
         closeNewAppointment={closeNewAppointment}
         userInfo={userInfo}
+        fetchAppointmentsByUser={fetchAppointmentsByUser}
       />
       <UserAppointments
         isUserAppointmentsOpen={isUserAppointmentsOpen}
         closeUserAppointments={closeUserAppointments}
         userInfo={userInfo}
+        appointments={appointments}
       />
     </>
   );
