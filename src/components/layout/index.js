@@ -4,6 +4,7 @@ export * from "./HeroSection";
 export * from "./HomeFooter";
 export * from "./HomeHeader";
 export * from "./NewAppointment";
+export * from "./PersonnelDashboard";
 export * from "./PersonnelSection";
 export * from "./ServicesSection";
 export * from "./UserAppointments";
