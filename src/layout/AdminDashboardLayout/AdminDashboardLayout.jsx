@@ -13,7 +13,7 @@ import {
 import { ChevronUpIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 
-import { Logo } from "../../components";
+import { AdminDashboardHeader, Logo } from "../../components";
 
 export const AdminDashboardLayout = ({
   userInfo,
@@ -31,22 +31,20 @@ export const AdminDashboardLayout = ({
 
   return (
     <Grid
-      border={"1px solid red"}
       minHeight={"100vh"}
-      gridTemplateAreas={`"aside section"`}
-      gridTemplateRows={"1fr"}
-      gridTemplateColumns={"20% 1fr"}
+      gridTemplateAreas={{ base: `"header" "section"`, lg: `"aside section"` }}
+      gridTemplateRows={{ base: "auto 1fr", lg: "1fr" }}
+      gridTemplateColumns={{ base: "1fr", lg: "20% 1fr" }}
     >
       <GridItem
         as={"aside"}
-        border={"1px solid blue"}
         area={"aside"}
         backgroundColor={"argentinianBlue"}
         color={"white"}
         padding={"16px"}
-        display={"flex"}
         flexDirection={"column"}
         justifyContent={"space-between"}
+        display={{ base: "none", lg: "flex" }}
       >
         <Box>
           <Logo />
@@ -82,7 +80,16 @@ export const AdminDashboardLayout = ({
           </MenuList>
         </Menu>
       </GridItem>
-      <GridItem as="section" border={"1px solid green"} area={"section"}>
+      <GridItem area={"header"} display={{ base: "block", lg: "none" }}>
+        <AdminDashboardHeader
+          asideOptions={asideOptions}
+          currentComponent={currentComponent}
+          setCurrentComponent={setCurrentComponent}
+          userInfo={userInfo}
+          logout={logout}
+        />
+      </GridItem>
+      <GridItem area={"section"} as={"section"}>
         <Text>{currentComponent}</Text>
       </GridItem>
     </Grid>
