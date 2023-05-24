@@ -9,3 +9,5 @@ export * from "./PersonnelSection";
 export * from "./ServicesSection";
 export * from "./UserAppointments";
 export * from "./UserDashboard";
+export * from "./UsersDisplay";
+export * from "./UsersTable";

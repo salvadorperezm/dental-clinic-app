@@ -13,6 +13,7 @@ import {
 import { ChevronUpIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 
+import { UsersDisplay } from "../../components/layout/UsersDisplay";
 import { AdminDashboardHeader, Logo } from "../../components";
 
 export const AdminDashboardLayout = ({
@@ -34,7 +35,7 @@ export const AdminDashboardLayout = ({
       minHeight={"100vh"}
       gridTemplateAreas={{ base: `"header" "section"`, lg: `"aside section"` }}
       gridTemplateRows={{ base: "auto 1fr", lg: "1fr" }}
-      gridTemplateColumns={{ base: "1fr", lg: "20% 1fr" }}
+      gridTemplateColumns={{ base: "100%", lg: "20% 1fr" }}
     >
       <GridItem
         as={"aside"}
@@ -90,7 +91,11 @@ export const AdminDashboardLayout = ({
         />
       </GridItem>
       <GridItem area={"section"} as={"section"}>
-        <Text>{currentComponent}</Text>
+        {currentComponent === "usuarios" ? (
+          <UsersDisplay userInfo={userInfo} />
+        ) : (
+          <Text>Another component</Text>
+        )}
       </GridItem>
     </Grid>
   );
