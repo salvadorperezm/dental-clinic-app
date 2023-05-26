@@ -1,4 +1,6 @@
 export * from "./AboutUs";
+export * from "./AppointmentsDisplay";
+export * from "./AppointmentsTable";
 export * from "./HeaderDrawer";
 export * from "./HeroSection";
 export * from "./HomeFooter";

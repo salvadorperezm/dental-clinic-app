@@ -14,7 +14,11 @@ import { ChevronUpIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 
 import { UsersDisplay } from "../../components/layout/UsersDisplay";
-import { AdminDashboardHeader, Logo } from "../../components";
+import {
+  AdminDashboardHeader,
+  AppointmentsDisplay,
+  Logo,
+} from "../../components";
 
 export const AdminDashboardLayout = ({
   userInfo,
@@ -93,6 +97,8 @@ export const AdminDashboardLayout = ({
       <GridItem area={"section"} as={"section"}>
         {currentComponent === "usuarios" ? (
           <UsersDisplay userInfo={userInfo} />
+        ) : currentComponent === "citas" ? (
+          <AppointmentsDisplay userInfo={userInfo} />
         ) : (
           <Text>Another component</Text>
         )}
