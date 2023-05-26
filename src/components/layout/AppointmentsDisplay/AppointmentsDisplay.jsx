@@ -52,6 +52,7 @@ export const AppointmentsDisplay = ({ userInfo }) => {
           <AppointmentsTable
             appointments={fetchedAppointments}
             userInfo={userInfo}
+            fetchAppointments={fetchAppointments}
           />
         </Box>
       )}

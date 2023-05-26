@@ -15,7 +15,7 @@ import { EditAppointment } from "../EditAppointment";
 import { AppointmentStatus } from "../../ui";
 import { useState } from "react";
 
-export const AppointmentsTable = ({ appointments }) => {
+export const AppointmentsTable = ({ appointments, fetchAppointments }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentAppointment, setCurrentAppointment] = useState({});
 
@@ -69,6 +69,7 @@ export const AppointmentsTable = ({ appointments }) => {
           isOpen={isOpen}
           onClose={onClose}
           appointment={currentAppointment}
+          fetchAppointments={fetchAppointments}
         />
       )}
     </>
