@@ -46,7 +46,11 @@ export const MaterialsDisplay = ({ userInfo }) => {
         </Box>
       ) : (
         <Box>
-          <MaterialsTable materials={fetchedMaterials} userInfo={userInfo} />
+          <MaterialsTable
+            materials={fetchedMaterials}
+            userInfo={userInfo}
+            fetchMaterials={fetchMaterials}
+          />
         </Box>
       )}
     </Box>
