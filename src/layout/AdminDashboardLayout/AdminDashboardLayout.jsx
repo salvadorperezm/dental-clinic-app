@@ -19,6 +19,7 @@ import {
   AppointmentsDisplay,
   Logo,
   MaterialsDisplay,
+  SuppliersDisplay,
 } from "../../components";
 
 export const AdminDashboardLayout = ({
@@ -102,6 +103,8 @@ export const AdminDashboardLayout = ({
           <AppointmentsDisplay userInfo={userInfo} />
         ) : currentComponent === "materiales" ? (
           <MaterialsDisplay userInfo={userInfo} />
+        ) : currentComponent === "proveedores" ? (
+          <SuppliersDisplay userInfo={userInfo} />
         ) : (
           <Text>Another component</Text>
         )}

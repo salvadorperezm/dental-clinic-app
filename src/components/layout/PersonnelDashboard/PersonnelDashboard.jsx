@@ -19,6 +19,10 @@ export const PersonnelDashboard = ({ userInfo }) => {
       id: 3,
       title: "materiales",
     },
+    {
+      id: 4,
+      title: "proveedores",
+    },
   ];
 
   return (
