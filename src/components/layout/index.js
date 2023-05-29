@@ -5,6 +5,8 @@ export * from "./HeaderDrawer";
 export * from "./HeroSection";
 export * from "./HomeFooter";
 export * from "./HomeHeader";
+export * from "./MaterialsDisplay";
+export * from "./MaterialsTable";
 export * from "./NewAppointment";
 export * from "./PersonnelDashboard";
 export * from "./PersonnelSection";
