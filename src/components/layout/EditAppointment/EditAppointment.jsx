@@ -23,6 +23,8 @@ export const EditAppointment = ({
   isOpen,
   onClose,
   fetchAppointments,
+  fetchAppointmentsAsAdmin,
+  userInfo,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -54,7 +56,6 @@ export const EditAppointment = ({
         );
         setIsLoading(false);
         onClose();
-        fetchAppointments();
         toast({
           title: "Éxito.",
           description: "La cita se ha actualizado satisfactoriamente.",
@@ -63,6 +64,11 @@ export const EditAppointment = ({
           position: "top",
           isClosable: true,
         });
+        if (userInfo.role === "Personnel") {
+          fetchAppointments();
+        } else {
+          fetchAppointmentsAsAdmin();
+        }
       } catch (error) {
         setIsLoading(false);
         toast({
