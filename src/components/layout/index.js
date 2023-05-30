@@ -5,6 +5,7 @@ export * from "./DeleteUser";
 export * from "./EditAppointment";
 export * from "./EditMaterial";
 export * from "./EditSupplier";
+export * from "./EditUser";
 export * from "./HeaderDrawer";
 export * from "./HeroSection";
 export * from "./HomeFooter";

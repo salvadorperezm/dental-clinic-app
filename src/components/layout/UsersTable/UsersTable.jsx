@@ -9,18 +9,27 @@ import {
   TableContainer,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { AiFillEdit } from "react-icons/ai";
 import { BsFillTrashFill } from "react-icons/bs";
 
 import { DeleteUser } from "../DeleteUser";
-import { useState } from "react";
+import { EditUser } from "../EditUser";
 
 export const UsersTable = ({ users, userInfo, fetchUsers }) => {
   const [userToBeDeleted, setUserToBeDeleted] = useState({});
+  const [userToBeEdited, setUserToBeEdited] = useState({});
 
   const {
     isOpen: isDeleteModalOpen,
     onOpen: openDeleteModal,
     onClose: closeDeleteModal,
+  } = useDisclosure();
+
+  const {
+    isOpen: isEditModalOpen,
+    onOpen: openEditModal,
+    onClose: closeEditModal,
   } = useDisclosure();
 
   const formatUserRole = (role) => {
@@ -31,6 +40,11 @@ export const UsersTable = ({ users, userInfo, fetchUsers }) => {
     } else {
       return "Admin";
     }
+  };
+
+  const handleEditClick = (user) => {
+    setUserToBeEdited(user);
+    openEditModal();
   };
 
   const handleDeleteClick = (user) => {
@@ -49,7 +63,13 @@ export const UsersTable = ({ users, userInfo, fetchUsers }) => {
               <Th>Apellido</Th>
               <Th>Rol</Th>
               <Th>Correo</Th>
-              {userInfo.role === "Admin" && <Th>Eliminar</Th>}
+
+              {userInfo.role === "Admin" && (
+                <>
+                  <Th>Editar</Th>
+                  <Th>Eliminar</Th>
+                </>
+              )}
             </Tr>
           </Thead>
           <Tbody>
@@ -62,12 +82,20 @@ export const UsersTable = ({ users, userInfo, fetchUsers }) => {
                   <Td>{formatUserRole(user.role)}</Td>
                   <Td>{user.email}</Td>
                   {userInfo.role === "Admin" && (
-                    <Th>
-                      <BsFillTrashFill
-                        cursor={"pointer"}
-                        onClick={() => handleDeleteClick(user)}
-                      />
-                    </Th>
+                    <>
+                      <Th>
+                        <AiFillEdit
+                          cursor={"pointer"}
+                          onClick={() => handleEditClick(user)}
+                        />
+                      </Th>
+                      <Th>
+                        <BsFillTrashFill
+                          cursor={"pointer"}
+                          onClick={() => handleDeleteClick(user)}
+                        />
+                      </Th>
+                    </>
                   )}
                 </Tr>
               );
@@ -80,6 +108,14 @@ export const UsersTable = ({ users, userInfo, fetchUsers }) => {
           isDeleteModalOpen={isDeleteModalOpen}
           closeDeleteModal={closeDeleteModal}
           user={userToBeDeleted}
+          fetchUsers={fetchUsers}
+        />
+      )}
+      {isEditModalOpen && (
+        <EditUser
+          isEditModalOpen={isEditModalOpen}
+          closeEditModal={closeEditModal}
+          user={userToBeEdited}
           fetchUsers={fetchUsers}
         />
       )}
