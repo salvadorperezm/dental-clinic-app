@@ -23,6 +23,16 @@ export const UsersTable = ({ users, userInfo, fetchUsers }) => {
     onClose: closeDeleteModal,
   } = useDisclosure();
 
+  const formatUserRole = (role) => {
+    if (role === "User") {
+      return "Usuario";
+    } else if (role === "Personnel") {
+      return "Doctor";
+    } else {
+      return "Admin";
+    }
+  };
+
   const handleDeleteClick = (user) => {
     setUserToBeDeleted(user);
     openDeleteModal();
@@ -37,6 +47,7 @@ export const UsersTable = ({ users, userInfo, fetchUsers }) => {
               <Th>Id</Th>
               <Th>Nombre</Th>
               <Th>Apellido</Th>
+              <Th>Rol</Th>
               <Th>Correo</Th>
               {userInfo.role === "Admin" && <Th>Eliminar</Th>}
             </Tr>
@@ -48,6 +59,7 @@ export const UsersTable = ({ users, userInfo, fetchUsers }) => {
                   <Td>{user.id}</Td>
                   <Td>{user.firstName}</Td>
                   <Td>{user.lastName}</Td>
+                  <Td>{formatUserRole(user.role)}</Td>
                   <Td>{user.email}</Td>
                   {userInfo.role === "Admin" && (
                     <Th>
