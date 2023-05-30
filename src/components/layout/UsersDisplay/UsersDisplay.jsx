@@ -46,7 +46,11 @@ export const UsersDisplay = ({ userInfo }) => {
         </Box>
       ) : (
         <Box>
-          <UsersTable users={fetchedUsers} userInfo={userInfo} />
+          <UsersTable
+            users={fetchedUsers}
+            userInfo={userInfo}
+            fetchUsers={fetchUsers}
+          />
         </Box>
       )}
     </Box>
