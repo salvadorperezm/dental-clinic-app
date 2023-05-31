@@ -9,7 +9,11 @@ export const AppointmentsDisplay = ({ userInfo }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetchAppointments();
+    if (userInfo.role === "Personnel") {
+      fetchAppointments();
+    } else {
+      fetchAppointmentsAsAdmin();
+    }
   }, []);
 
   const fetchAppointments = async () => {
@@ -25,6 +29,24 @@ export const AppointmentsDisplay = ({ userInfo }) => {
           },
         }
       );
+      setFetchedAppointments(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.warn(error);
+      setIsLoading(false);
+    }
+  };
+
+  const fetchAppointmentsAsAdmin = async () => {
+    setIsLoading(true);
+    const accessToken = localStorage.getItem("accessToken");
+    const backendUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+    try {
+      const response = await axios.get(`${backendUrl}/appointments`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       setFetchedAppointments(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -53,6 +75,7 @@ export const AppointmentsDisplay = ({ userInfo }) => {
             appointments={fetchedAppointments}
             userInfo={userInfo}
             fetchAppointments={fetchAppointments}
+            fetchAppointmentsAsAdmin={fetchAppointmentsAsAdmin}
           />
         </Box>
       )}

@@ -20,9 +20,11 @@ import { useState } from "react";
 
 export const EditAppointment = ({
   appointment,
-  isOpen,
-  onClose,
+  isEditModalOpen,
+  closeEditModal,
   fetchAppointments,
+  fetchAppointmentsAsAdmin,
+  userInfo,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -53,8 +55,7 @@ export const EditAppointment = ({
           }
         );
         setIsLoading(false);
-        onClose();
-        fetchAppointments();
+        closeEditModal();
         toast({
           title: "Éxito.",
           description: "La cita se ha actualizado satisfactoriamente.",
@@ -63,6 +64,11 @@ export const EditAppointment = ({
           position: "top",
           isClosable: true,
         });
+        if (userInfo.role === "Personnel") {
+          fetchAppointments();
+        } else {
+          fetchAppointmentsAsAdmin();
+        }
       } catch (error) {
         setIsLoading(false);
         toast({
@@ -78,7 +84,7 @@ export const EditAppointment = ({
   });
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isEditModalOpen} onClose={closeEditModal}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Actualiza una cita</ModalHeader>

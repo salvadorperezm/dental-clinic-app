@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
-import { Box, Heading, Spinner } from "@chakra-ui/react";
+import { Box, Button, Heading, Spinner, useDisclosure } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 import { UsersTable } from "../UsersTable";
+import { AddIcon } from "@chakra-ui/icons";
+import { AddUser } from "../AddUser/AddUser";
 
 export const UsersDisplay = ({ userInfo }) => {
   const [fetchedUsers, setFetchedUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     fetchUsers();
@@ -31,24 +35,43 @@ export const UsersDisplay = ({ userInfo }) => {
     }
   };
   return (
-    <Box padding={"16px"} maxH={"100vh"} overflow={"scroll"}>
-      {isLoading ? (
-        <Box
-          height={"100vh"}
-          display={"flex"}
-          flexDirection={"column"}
-          gap={"10px"}
-          alignItems={"center"}
-          justifyContent={"center"}
-        >
-          <Spinner />
-          <Heading>Cargando usuarios...</Heading>
-        </Box>
-      ) : (
-        <Box>
-          <UsersTable users={fetchedUsers} userInfo={userInfo} />
-        </Box>
+    <>
+      <Box padding={"16px"} maxH={"100vh"} overflow={"scroll"}>
+        {isLoading ? (
+          <Box
+            height={"100vh"}
+            display={"flex"}
+            flexDirection={"column"}
+            gap={"10px"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Spinner />
+            <Heading>Cargando usuarios...</Heading>
+          </Box>
+        ) : (
+          <Box>
+            {userInfo.role === "Admin" && (
+              <Button
+                marginBlockEnd={"10px"}
+                colorScheme={"facebook"}
+                leftIcon={<AddIcon />}
+                onClick={onOpen}
+              >
+                Agregar Usuario
+              </Button>
+            )}
+            <UsersTable
+              users={fetchedUsers}
+              userInfo={userInfo}
+              fetchUsers={fetchUsers}
+            />
+          </Box>
+        )}
+      </Box>
+      {isOpen && (
+        <AddUser isOpen={isOpen} onClose={onClose} fetchUsers={fetchUsers} />
       )}
-    </Box>
+    </>
   );
 };
