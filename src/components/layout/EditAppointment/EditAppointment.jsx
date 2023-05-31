@@ -20,8 +20,8 @@ import { useState } from "react";
 
 export const EditAppointment = ({
   appointment,
-  isOpen,
-  onClose,
+  isEditModalOpen,
+  closeEditModal,
   fetchAppointments,
   fetchAppointmentsAsAdmin,
   userInfo,
@@ -55,7 +55,7 @@ export const EditAppointment = ({
           }
         );
         setIsLoading(false);
-        onClose();
+        closeEditModal();
         toast({
           title: "Éxito.",
           description: "La cita se ha actualizado satisfactoriamente.",
@@ -84,7 +84,7 @@ export const EditAppointment = ({
   });
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isEditModalOpen} onClose={closeEditModal}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Actualiza una cita</ModalHeader>

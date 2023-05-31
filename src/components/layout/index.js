@@ -2,6 +2,7 @@ export * from "./AboutUs";
 export * from "./AddUser";
 export * from "./AppointmentsDisplay";
 export * from "./AppointmentsTable";
+export * from "./DeleteAppointment";
 export * from "./DeleteUser";
 export * from "./EditAppointment";
 export * from "./EditMaterial";

@@ -9,11 +9,13 @@ import {
   TableContainer,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
+import { BsFillTrashFill } from "react-icons/bs";
 
 import { EditAppointment } from "../EditAppointment";
+import { DeleteAppointment } from "../DeleteAppointment";
 import { AppointmentStatus } from "../../ui";
-import { useState } from "react";
 
 export const AppointmentsTable = ({
   appointments,
@@ -21,12 +23,29 @@ export const AppointmentsTable = ({
   fetchAppointmentsAsAdmin,
   userInfo,
 }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentAppointment, setCurrentAppointment] = useState({});
+  const [appointmentToBeDeleted, setAppointmentToBeDeleted] = useState({});
+
+  const {
+    isOpen: isEditModalOpen,
+    onOpen: openEditModal,
+    onClose: closeEditModal,
+  } = useDisclosure();
+
+  const {
+    isOpen: isDeleteModalOpen,
+    onOpen: openDeleteModal,
+    onClose: closeDeleteModal,
+  } = useDisclosure();
 
   const handleClick = (appointment) => {
     setCurrentAppointment(appointment);
-    onOpen();
+    openEditModal();
+  };
+
+  const handleDeleteClick = (appointment) => {
+    setAppointmentToBeDeleted(appointment);
+    openDeleteModal();
   };
 
   return (
@@ -40,6 +59,7 @@ export const AppointmentsTable = ({
               <Th>Confirmada</Th>
               <Th>Completada</Th>
               <Th>Editar</Th>
+              {userInfo.role === "Admin" && <Th>Eliminar</Th>}
             </Tr>
           </Thead>
           <Tbody>
@@ -63,20 +83,36 @@ export const AppointmentsTable = ({
                       onClick={() => handleClick(appointment)}
                     />
                   </Td>
+                  {userInfo.role === "Admin" && (
+                    <Td>
+                      <BsFillTrashFill
+                        cursor={"pointer"}
+                        onClick={() => handleDeleteClick(appointment)}
+                      />
+                    </Td>
+                  )}
                 </Tr>
               );
             })}
           </Tbody>
         </Table>
       </TableContainer>
-      {isOpen && (
+      {isEditModalOpen && (
         <EditAppointment
-          isOpen={isOpen}
-          onClose={onClose}
+          isEditModalOpen={isEditModalOpen}
+          closeEditModal={closeEditModal}
           appointment={currentAppointment}
           fetchAppointments={fetchAppointments}
           fetchAppointmentsAsAdmin={fetchAppointmentsAsAdmin}
           userInfo={userInfo}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <DeleteAppointment
+          isDeleteModalOpen={isDeleteModalOpen}
+          closeDeleteModal={closeDeleteModal}
+          appointment={appointmentToBeDeleted}
+          fetchAppointmentsAsAdmin={fetchAppointmentsAsAdmin}
         />
       )}
     </>
